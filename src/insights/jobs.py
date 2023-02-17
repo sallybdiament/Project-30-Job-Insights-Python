@@ -1,5 +1,6 @@
 from functools import lru_cache
 from typing import List, Dict
+import csv
 
 
 @lru_cache
@@ -16,7 +17,16 @@ def read(path: str) -> List[Dict]:
     list
         List of rows as dicts
     """
-    raise NotImplementedError
+    if not path.endswith(".csv"):
+        raise ValueError("Invalid type of file")
+    try:
+        with open(path) as file:
+            return csv.DictReader(file)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Not found file: {path}")
+
+
+# "/Users/sallydiament/Desktop/projetos_trybe/sd-022-b-project-job-insights/data/jobs.csv"
 
 
 def get_unique_job_types(path: str) -> List[str]:
