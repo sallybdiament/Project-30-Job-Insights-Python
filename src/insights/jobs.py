@@ -21,12 +21,13 @@ def read(path: str) -> List[Dict]:
         raise ValueError("Invalid type of file")
     try:
         with open(path) as file:
-            return csv.DictReader(file)
+            reader = csv.DictReader(file)
+            list_file = []
+            for item in reader:
+                list_file.append(item)
+            return list_file
     except FileNotFoundError:
-        raise FileNotFoundError(f"Not found file: {path}")
-
-
-# "/Users/sallydiament/Desktop/projetos_trybe/sd-022-b-project-job-insights/data/jobs.csv"
+        raise FileNotFoundError(f"Arquivo não encontrado: {path}")
 
 
 def get_unique_job_types(path: str) -> List[str]:
@@ -44,7 +45,14 @@ def get_unique_job_types(path: str) -> List[str]:
     list
         List of unique job types
     """
-    raise NotImplementedError
+    try:
+        all_jobs = read(path)
+        all_job_types = set()
+        for job in all_jobs:
+            all_job_types.add(job["job_type"])
+        return all_job_types
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Not found file: {path}")
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:

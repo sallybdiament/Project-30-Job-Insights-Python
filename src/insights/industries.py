@@ -1,4 +1,5 @@
 from typing import List, Dict
+from jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
@@ -16,7 +17,16 @@ def get_unique_industries(path: str) -> List[str]:
     list
         List of unique industries
     """
-    raise NotImplementedError
+    try:
+        all_jobs = read(path)
+        all_industries = set()
+        for job in all_jobs:
+            all_industries.add(job["industry"])
+        if "" in all_industries:
+            all_industries.remove("")
+        return all_industries
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Not found file: {path}")
 
 
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
