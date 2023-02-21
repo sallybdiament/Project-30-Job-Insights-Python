@@ -1,4 +1,5 @@
 from typing import Union, List, Dict
+from jobs import read
 
 
 def get_max_salary(path: str) -> int:
@@ -16,7 +17,14 @@ def get_max_salary(path: str) -> int:
     int
         The maximum salary paid out of all job opportunities
     """
-    raise NotImplementedError
+    try:
+        all_jobs = read(path)
+        all_max_salaries = set()
+        for job in all_jobs:
+            all_max_salaries.add(job["max_salary"])
+        return max(all_max_salaries)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Not found file: {path}")
 
 
 def get_min_salary(path: str) -> int:
@@ -34,7 +42,16 @@ def get_min_salary(path: str) -> int:
     int
         The minimum salary paid out of all job opportunities
     """
-    raise NotImplementedError
+    try:
+        all_jobs = read(path)
+        all_min_salaries = set()
+        for job in all_jobs:
+            all_min_salaries.add(job["min_salary"])
+        if "" in all_min_salaries:
+            all_min_salaries.remove("")
+        return min(all_min_salaries)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Not found file: {path}")
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
