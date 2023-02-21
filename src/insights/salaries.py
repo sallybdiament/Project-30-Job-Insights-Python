@@ -1,6 +1,6 @@
 from typing import Union, List, Dict
-# from src.insights.jobs import read
-from jobs import read
+from src.insights.jobs import read
+# from jobs import read
 
 
 def get_max_salary(path: str) -> int:
@@ -84,7 +84,17 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         If `job["min_salary"]` is greather than `job["max_salary"]`
         If `salary` isn't a valid integer
     """
-    raise NotImplementedError
+    try:
+        type(salary) == "integer"
+        for job in job:
+            job["min_salary"] < job["max_salary"]
+            type(job["min_salary"]) == "integer"
+            type(job["max_salary"]) == "integer"
+            job["min_salary"] != ""
+            job["max_salary"] != ""
+        return True
+    except ValueError:
+        raise ValueError("Esta vaga não está com os valores corretos")
 
 
 def filter_by_salary_range(
