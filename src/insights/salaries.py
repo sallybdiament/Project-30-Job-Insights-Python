@@ -1,5 +1,6 @@
 from typing import Union, List, Dict
-from src.insights.jobs import read
+# from src.insights.jobs import read
+from jobs import read
 
 
 def get_max_salary(path: str) -> int:
@@ -22,7 +23,11 @@ def get_max_salary(path: str) -> int:
         all_max_salaries = set()
         for job in all_jobs:
             all_max_salaries.add(job["max_salary"])
-        return max(all_max_salaries)
+        all_max_salaries = ' '.join(all_max_salaries).split()
+        all_max_salaries_valid = set()
+        for salary in all_max_salaries:
+            all_max_salaries_valid.add(int(salary))
+        return (max(all_max_salaries_valid))
     except FileNotFoundError:
         raise FileNotFoundError(f"Not found file: {path}")
 
@@ -47,9 +52,11 @@ def get_min_salary(path: str) -> int:
         all_min_salaries = set()
         for job in all_jobs:
             all_min_salaries.add(job["min_salary"])
-        if "" in all_min_salaries:
-            all_min_salaries.remove("")
-        return min(all_min_salaries)
+        all_min_salaries = ' '.join(all_min_salaries).split()
+        all_min_salaries_valid = set()
+        for salary in all_min_salaries:
+            all_min_salaries_valid.add(int(salary))
+        return (min(all_min_salaries_valid))
     except FileNotFoundError:
         raise FileNotFoundError(f"Not found file: {path}")
 
