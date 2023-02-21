@@ -71,6 +71,7 @@ def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
         List of jobs with provided job_type
     """
     jobs_by_type = []
-    if job_type in jobs["job_type"]:
-        jobs_by_type.append(jobs)
+    for job in jobs:
+        if job_type == job["job_type"]:
+            jobs_by_type.append(job)
     return jobs_by_type
