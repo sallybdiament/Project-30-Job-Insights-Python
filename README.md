@@ -1,6 +1,6 @@
 # Job Insights - Computer Science Project
 
-Projeto em **Python** com framework **Flask** para obter dados através de um arquivo ```.CSV```!
+Projeto em **Python** com framework **Flask** para obter dados através de um arquivo ```.csv```!
 
 Habilidades trabalhadas:
 - Utilizar o terminal interativo do Python.
@@ -14,7 +14,6 @@ Habilidades trabalhadas:
 
 Projeto 30 da [Trybe](https://wwww.betrybe.com), módulo de Ciência da Computação.
 
-![Score Project](./score-project.png)
 ## O Projeto
 
 * Implementar função para: abrir, ler e transformar os dados como lista de dicionários, a partir do caminho do arquivo.
