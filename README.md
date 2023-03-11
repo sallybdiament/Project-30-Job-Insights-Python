@@ -36,11 +36,11 @@ python3 -m venv .venv && source .venv/bin/activate
 
 python3 -m pip install -r dev-requirements.txt
 
-#### 3 - Para executar as funções:
+#### 4 - Para executar as funções:
 
 Abrir o terminal e rodar a função desejada: ```python3 -i src/insights/jobs.py```
 
-#### 4 - Executar os testes:
+#### 5 - Executar os testes:
 
 ```python3 -m pytest tests/nomedoarquivo.py -k nome_da_func_de_tests```
 
